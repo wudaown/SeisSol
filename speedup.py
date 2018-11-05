@@ -4,6 +4,21 @@
 import matplotlib.pyplot as plt
 import os
 
+plt.rcParams['figure.dpi']= 300
+plt.style.use('seaborn-white')
+
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = 'Ubuntu'
+plt.rcParams['font.monospace'] = 'Ubuntu Mono'
+plt.rcParams['font.size'] = 10
+plt.rcParams['axes.labelsize'] = 10
+plt.rcParams['axes.labelweight'] = 'bold'
+plt.rcParams['axes.titlesize'] = 10
+plt.rcParams['xtick.labelsize'] = 8
+plt.rcParams['ytick.labelsize'] = 8
+plt.rcParams['legend.fontsize'] = 10
+plt.rcParams['figure.titlesize'] = 12
+
 os.chdir('./config')
 filelist = os.listdir('.')
 GFLOP_HARD_FILE=[x for x in filelist if 'hard' in x]
@@ -116,7 +131,7 @@ gflops_hard_data = extract_data(GFLOP_HARD_FILE)
 #tts_data = extract_data(sc_file='tts_sc', bl_file='tts_bl',bl_1_file='tts_bl_1', normalize=True)
 #gflops_non_data = extract_data(sc_file='non_sc', bl_file='non_bl', bl_1_file='non_bl_1')
 #gflops_hard_data = extract_data(sc_file='hard_sc', bl_file='hard_bl', bl_1_file='hard_bl_1')
-fig, axs = plt.subplots(3,6, figsize=(13,9) ,sharey='row')
+fig, axs = plt.subplots(3,6, figsize=(130000,90000) ,sharey='row', dpi=300)
 def plot(data, ylabel, row):
     for i in range(len(data)):
         names = list(data[i].keys())
