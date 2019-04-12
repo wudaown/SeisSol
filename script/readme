@@ -1,0 +1,25 @@
+env.sh - environment variable to use direct io in main seissol program
+main.sh - to launch main seissol program, lts1 and lts2 is the parameter file too
+eg: ./main.sh lts2 ; main.sh lts1
+main_result.sh - to generate the result need from seissol main program
+eg: ./main_result.sh [hardware,non,time] FOLDER_TO_RESULT
+
+auto_tune_auto_run.sh - to build, run and analyse auto tuning skip test
+eg: ./auto_tune_auto_run.sh [build,run.ana] [skx,hsw,etc]
+auto_tune_result.sh - to get result from auto tuning
+eg: ./auto_tune_result.sh [hardware,non,time] [skx,hsw,etc]
+
+proxy_launcher.sh - edited proxy_launcher.sh to compile order 4 to 7 in a loop
+eg: ./proxy_launcher.sh
+
+bl_proxy_run.sh - to actually run the bl proxy with constant parameter
+eg: ./bl_proxy_run.sh 100000 1000 FOLDER 
+
+bl_proxy_resu.t.sh - to get result from bl proxy application
+eg: ./bl_proxy_result.sh [hardware,non,time] FOLDER
+
+speedup_hrad.py - to plot the speedup and gflop graph if data is given
+eg: python speedup_hard.py
+
+scale.py - to plot the scale and time graph
+eg: python scale.py [et,gflop]
