@@ -2,16 +2,20 @@
 # _*_ coding:utf8 _*_
 
 import matplotlib.pyplot as plt
+from matplotlib.axes import Axes
 import os
 import random
 import argparse
 
 plt.style.use('seaborn-white')
 
-plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['font.serif'] = 'Times New Roman'
-plt.rcParams['font.monospace'] = 'Times New Roman'
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = ['STIXGeneral']
+plt.rcParams['font.weight'] = 'light'
 
+
+params = {'legend.fontsize': 16}
+plt.rcParams.update(params)
 
 os.chdir('./scale')
 FILELIST=os.listdir('.')
@@ -26,7 +30,7 @@ color = ['#4AC29C', '#E768B6']
 
 def gflop_graph(input_filelist, color):
     x = [10,20,30,40]
-    y = [ i for i in range(0,18)]
+    y = [ i for i in range(7,18)]
     for j in range(HARD_FILE.__len__()):
         y_file = open(HARD_FILE[j], 'r')
         label_input = (HARD_FILE[j].split('_'))
@@ -52,20 +56,26 @@ def gflop_graph(input_filelist, color):
             markerfacecolor = 'none'
         else:
             markerfacecolor = c
-        plt.plot(x,wp, marker='o', markerfacecolor=markerfacecolor, markersize=12, color=c, label=label)
-        plt.plot(x,tt, marker='o', markerfacecolor=markerfacecolor, markersize=12, color=c, linestyle='dashed')
+        plt.plot(x,wp, marker='o', markerfacecolor=markerfacecolor,
+                markersize=8, color=c, label=label, linewidth=2)
+        plt.plot(x,tt, marker='o', markerfacecolor=markerfacecolor,
+                markersize=8, color=c, linestyle='dashed', linewidth=2)
     plt.xticks(x, x)
     plt.yticks(y, y)
-    plt.xlabel('Number of cores')
-    plt.ylabel('GFLOPS per core') 
-    plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=4)
+    plt.tick_params(axis='both', labelsize=16)
+    plt.xlabel('Number of cores', fontsize=20, labelpad=3)
+    plt.ylabel('GFLOPS per core', fontsize=20, labelpad=3) 
+    plt.legend(loc=9, bbox_to_anchor=(0.5, -0.2), ncol=4)
+    plt.box(on=None)
+    for i in range(7, 18):
+        plt.axhline(y=i, linestyle='--', color='black', alpha=0.05)
     
     plt.show()
 
 
 def et_graph(input_filelist, color):
     x = [10,20,30,40]
-    y = [ i for i in range(0,18)]
+    y = [ i for i in range(0,110,10)]
     for j in range(HARD_FILE.__len__()):
         print(HARD_FILE[j])
         y_file = open(HARD_FILE[j], 'r')
@@ -90,13 +100,17 @@ def et_graph(input_filelist, color):
             markerfacecolor = 'none'
         else:
             markerfacecolor = c
-        plt.plot(x,et, marker='o', markerfacecolor=markerfacecolor, markersize=12, color=c, label=label)
+        plt.plot(x,et, marker='o', markerfacecolor=markerfacecolor,
+                markersize=8, color=c, label=label, linewidth=2)
     plt.xticks(x, x)
-    plt.xlabel('Number of cores')
-    plt.ylabel('Extrapolated Time ( Hours )') 
-    plt.legend(loc=9, bbox_to_anchor=(0.5, -0.1), ncol=4)
-    
-    
+    plt.yticks(y,y)
+    plt.tick_params(axis='both', labelsize=16)
+    plt.xlabel('Number of cores', fontsize=20, labelpad=3)
+    plt.ylabel('Extrapolated time (h)', fontsize=20, labelpad=3) 
+    plt.legend(loc=9, bbox_to_anchor=(0.5,-0.2), ncol=4)
+    plt.box(on=None)
+    for i in range(0, 110, 10):
+        plt.axhline(y=i, linestyle='--', color='black', alpha=0.05)
     plt.show()
 
     

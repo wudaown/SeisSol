@@ -5,11 +5,13 @@ import matplotlib.pyplot as plt
 import os
 
 
-plt.rcParams['font.family'] = 'Times New Roman'
-plt.rcParams['font.serif'] = 'Times New Roman'
-plt.rcParams['font.monospace'] = 'Times New Roman'
+plt.rcParams['font.family'] = 'serif'
+plt.rcParams['font.serif'] = 'STIXGeneral'
+#plt.rcParams['font.monospace'] = 'Times New Roman'
+plt.rc('axes.spines', **{'bottom':False, 'left':False, 'right':False, 'top':False})
 os.chdir('./config')
 filelist = os.listdir('.')
+print(filelist)
 GFLOP_HARD_FILE=[x for x in filelist if 'hard' in x]
 GFLOP_HARD_FILE.sort()
 TTS_FILE=[x for x in filelist if 'tts' in x]
@@ -84,14 +86,14 @@ def plot(data, ylabel, row, order=False):
             #else:
             #    x_pos = 0.8
             axs[row][i].text(j.get_x()+0.2, j.get_height()/1.3, \
-            str(round((j.get_height()), 2)), fontsize=12, color='black',
+            str(round((j.get_height()), 2)), fontsize=10, color='black',
                 rotation=90)
 
 plot(tts_data, 'Speedup', 1)
 plot(gflops_hard_data, 'GFLOPS', 0, order=True)
 
 
-fig.suptitle('SKX')
+fig.suptitle('SKX', weight=1)
 
 plt.show()
 
